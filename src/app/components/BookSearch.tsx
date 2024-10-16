@@ -77,6 +77,8 @@ const BookSearch = () => {
     isLoading.isLoading,
     textAnalysis,
     trigger,
+    books.currentPage,
+    books.pageSize,
   ]);
 
   const isDisabled = !bookId.trim();

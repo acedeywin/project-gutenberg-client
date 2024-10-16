@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Book, BooksState, initialState } from './types';
+import { Book, initialState } from './types';
 
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 

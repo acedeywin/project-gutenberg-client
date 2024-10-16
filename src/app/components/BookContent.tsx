@@ -32,7 +32,7 @@ const BookContent = () => {
       }
     };
     fetchPaginatedContent();
-  }, [currentPage, selectedBook, trigger]);
+  }, [currentPage, selectedBook, trigger, pageSize, dispatch]);
 
   useEffect(() => {
     window.scrollTo({
