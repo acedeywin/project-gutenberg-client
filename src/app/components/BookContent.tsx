@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useState, useEffect } from 'react';
-import { setCurrentPage, useLazyBookDataQuery } from '../redux/bookSlice';
+import { setCurrentPage, setError, useLazyBookDataQuery } from '../redux/bookSlice';
 import { RootState } from '../redux/store';
 import Pagination from './Pagination';
 
 const BookContent = () => {
   const selectedBook = useAppSelector((state) => state.books.selectedBook);
-  const { currentPage } = useAppSelector((state: RootState) => state.books);
+  const { currentPage, pageSize } = useAppSelector((state: RootState) => state.books);
   const [paginatedContent, setPaginatedContent] = useState('');
   const [trigger] = useLazyBookDataQuery();
   const dispatch = useAppDispatch();
@@ -22,11 +22,12 @@ const BookContent = () => {
       if (selectedBook) {
         try {
           const response = await trigger(
-            `/${selectedBook?.content.book_id}?page=${currentPage}&page_size=${15000}`,
+            `?book_id=${selectedBook?.content.book_id}&page=${currentPage}&page_size=${pageSize}`,
           );
           setPaginatedContent(response.data.content);
         } catch (error) {
           console.error('Error fetching paginated content:', error);
+          dispatch(setError('Failed to paginate content. Please try again.'));
         }
       }
     };

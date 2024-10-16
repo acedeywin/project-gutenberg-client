@@ -34,7 +34,9 @@ const BookSearch = () => {
         return;
       }
 
-      const content = await trigger(`/${bookId}?page=${1}&page_size=${15000}`);
+      const content = await trigger(
+        `?book_id=${bookId}&page=${books.currentPage}&page_size=${books.pageSize}`,
+      );
       dispatch(setCurrentPage(1));
 
       if (content.error) {
@@ -42,11 +44,12 @@ const BookSearch = () => {
       }
 
       if (content.data) {
+        dispatch(setError(''));
         const data = {
           body: { content: content.data.content },
           bookId,
         };
-        const metadata = await trigger(`/metadata/${bookId}`);
+        const metadata = await trigger(`/metadata?book_id=${bookId}`);
         const textAnalysisResponse = await textAnalysis(data).unwrap();
 
         if (!isLoading.isError) {
@@ -61,7 +64,7 @@ const BookSearch = () => {
         }
       }
     } catch (error) {
-      console.log('error', error);
+      console.error('Error fetching content:', error);
       dispatch(setError('Failed to fetch the book. Please try again.'));
     } finally {
       setLoading(isLoading.isLoading);

@@ -21,6 +21,13 @@ export interface Book {
   };
 }
 
+export interface ContentError {
+  error: {
+    data: { detail: string };
+    status: number;
+  };
+}
+
 export interface BooksState {
   books: Book[];
   selectedBook: Book | null;
@@ -32,7 +39,7 @@ export interface BooksState {
 export const initialState: BooksState = {
   books: [],
   selectedBook: null,
-  currentPage: Number(1),
-  pageSize: Number(15000),
+  currentPage: 1,
+  pageSize: 15000,
   error: null,
 };
