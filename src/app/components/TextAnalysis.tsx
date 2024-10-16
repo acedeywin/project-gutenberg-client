@@ -26,7 +26,7 @@ const TextAnalysis = () => {
           <h2 className="text-lg font-bold py-2 px-4">Text Analysis</h2>
           <p className="text-sm text-gray-600 py-2 px-4">
             <span className="font-bold">Language:</span>{' '}
-            {textAnalysis?.language || 'No summary available'}
+            {textAnalysis?.language || 'No language available'}
           </p>
           <p className="text-sm text-gray-600 py-2 px-4 whitespace-pre-line">
             <span className="font-bold">Summary:</span>{' '}

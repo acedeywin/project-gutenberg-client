@@ -77,7 +77,6 @@ export const bookSlice = createSlice({
 
 export const { addBook, selectBook, setCurrentPage, setPageSize, setError } =
   bookSlice.actions;
-export const selectBooks = (state: BooksState) => state.books;
 
 export const { useLazyBookDataQuery } = getSlice;
 export const { useTextAnalysisMutation } = postSlice;

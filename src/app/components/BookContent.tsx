@@ -59,12 +59,14 @@ const BookContent = () => {
           {paginatedContent}
         </p>
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        nextPage={nextPage}
-        previousPage={previousPage}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+        />
+      )}
     </div>
   );
 };
