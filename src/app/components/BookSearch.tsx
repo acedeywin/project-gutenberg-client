@@ -1,6 +1,6 @@
 'use client';
 
-import { SetStateAction, useCallback, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import {
   addBook,
@@ -19,6 +19,10 @@ const BookSearch = () => {
   const [textAnalysis, isLoading] = useTextAnalysisMutation();
   const [trigger] = useLazyBookDataQuery();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    dispatch(setError(''));
+  }, [dispatch]);
 
   const handleSearch = useCallback(async () => {
     setLoading(true);
