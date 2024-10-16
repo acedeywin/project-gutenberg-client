@@ -12,14 +12,14 @@ const BookList = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10;
-  const pageIndexs = 1;
-  const startIndex = (currentPage - pageIndexs) * itemsPerPage;
+  const pageIndex = 1;
+  const startIndex = (currentPage - pageIndex) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const booksListLength = books.length;
   const totalPages = Math.ceil(booksListLength / itemsPerPage);
 
-  const nextPage = () => setCurrentPage(Math.min(currentPage + pageIndexs, totalPages));
-  const previousPage = () => setCurrentPage(Math.max(currentPage - pageIndexs, pageIndexs));
+  const nextPage = () => setCurrentPage(Math.min(currentPage + pageIndex, totalPages));
+  const previousPage = () => setCurrentPage(Math.max(currentPage - pageIndex, pageIndex));
 
   // Use useEffect to ensure the component is mounted before rendering client-specific content
   useEffect(() => {
@@ -42,7 +42,7 @@ const BookList = () => {
 
   return (
     <div className="p-4">
-      {booksListLength >= pageIndexs && (
+      {booksListLength >= pageIndex && (
         <h2 className="text-2xl mb-4">Previously Accessed Books</h2>
       )}
       <ul>
