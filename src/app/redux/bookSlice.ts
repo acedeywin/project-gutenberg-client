@@ -37,26 +37,7 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     addBook: (state, action: PayloadAction<Book>) => {
-      // Check if the book already exists
-      const bookIndex = state.books.findIndex((book) => book.id === action.payload.id);
-
-      // If the book does not exist, add it to the state
-      if (bookIndex === -1) {
-        state.books.push(action.payload);
-      }
-
-      // Ensure books are unique by ID
-      const uniqueBooks = Array.from(new Set(state.books.map((book) => book.id)))
-        .map((id) => state.books.find((book) => book.id === id))
-        .filter((book) => book !== undefined); // Filter out undefined values
-
-      // Assign back to state
-      state.books = uniqueBooks;
-
-      // Reverse only if a new book was added
-      if (bookIndex === -1) {
-        state.books.reverse();
-      }
+      state.books.unshift(action.payload);
     },
 
     selectBook: (state, action: PayloadAction<number>) => {

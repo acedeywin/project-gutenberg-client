@@ -32,7 +32,8 @@ const BookContent = () => {
       }
     };
     fetchPaginatedContent();
-  }, [currentPage, selectedBook, trigger, pageSize, dispatch]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [currentPage, selectedBook, trigger]);
 
   useEffect(() => {
     window.scrollTo({
